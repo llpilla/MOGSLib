@@ -7,7 +7,7 @@ LIBS = -L$(PYTHON_LIB) -lboost_python$(PV) -lpython$(PYTHON_VERSION)
 MOGSLIB = ../include/
 
 TARGET = mogslib
-SOURCES = load_oblivious
+SOURCES = scheduler_for_python
 
 all: $(TARGET).so
 
