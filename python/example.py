@@ -1,4 +1,4 @@
-import mogslib
+import mogspy.mogslib as mogslib
 sched = mogslib.Scheduler()
 print sched.load_oblivious("roundrobin",5,15)
 

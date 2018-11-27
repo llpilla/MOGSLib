@@ -53,7 +53,7 @@ struct RuntimeTraits<RuntimeSystemEnum::OpenMP> {
   /**
    * @brief The type definition that will serve to quantify load values in MOGSLib when used in OpenMP.
    */
-  using Load = unsigned int;
+  using Load = float;
 
   /**
    * @brief The name of the system so it can be referenced on user-friendly messages.
