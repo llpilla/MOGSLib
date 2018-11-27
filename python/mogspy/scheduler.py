@@ -72,6 +72,7 @@ class Scheduler:
             * Max load
             * Min load
             * Ratio between max and min loads (max/min)
+            * Imbalance (max/mean - 1)
             * Standard deviation of loads
             * Skewness of loads
             * Kurtosis of loads
@@ -100,6 +101,7 @@ class Scheduler:
         print "Load - max:", max_load
         print "Load - min:", min_load
         print "Load - ratio between max and min:", max_load/min_load
+        print "Load - imbalance:", max_load/mean - 1
         print "Load - standard deviation:", stdev
         print "Load - skewness:", skew
         print "Load - kurtosis:", kurt
