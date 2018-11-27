@@ -57,8 +57,3 @@ class PEs:
                 # for each task in said PE, add its load to the load of the PE
                 self.loads[pe] = self.loads[pe] + tasks.loads[t]
 
-
-
-
-
-
