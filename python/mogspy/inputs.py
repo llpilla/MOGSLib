@@ -46,18 +46,17 @@ class Tasks:
 
     @staticmethod
     def from_csv(filename = "tasks.csv"):
-        """Import task loads from a CSV format"""
+        """Imports task loads from a CSV format"""
         try:
             with open(filename, 'r') as f:
                 reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
                 loads = list(reader)[0]
             return Tasks.from_loads(loads)
         except IOError:
-            print "Failure: could not read file "+filename
-
+            print "Error: could not read file "+filename
 
     def to_csv(self, filename = "tasks.csv"):
-        """Export task loads to CSV format"""
+        """Exports task loads to a CSV format"""
         try:
             with open(filename, 'wb') as f:
                 writer = csv.writer(f)
@@ -66,7 +65,7 @@ class Tasks:
                 except AttributeError:
                     writer.writerow([0]*self.num)
         except IOError:
-            print "Failure: could not write file "+filename
+            print "Error: could not write file "+filename
 
 
     def stats(self):
@@ -111,7 +110,7 @@ class PEs:
 
     @staticmethod
     def from_csv(filename = "pes.csv"):
-        """Import pe loads from a CSV format"""
+        """Imports PE loads from a CSV format"""
         try:
             with open(filename, 'r') as f:
                 reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
@@ -120,11 +119,10 @@ class PEs:
             pe.loads = loads
             return pe
         except IOError:
-            print "Failure: could not read file "+filename
-
+            print "Error: could not read file "+filename
 
     def to_csv(self, filename = "pes.csv"):
-        """Export task loads to CSV format"""
+        """Exports PE loads to a CSV format"""
         try:
             with open(filename, 'wb') as f:
                 writer = csv.writer(f)
@@ -133,7 +131,7 @@ class PEs:
                 except AttributeError:
                     writer.writerow([0]*self.num)
         except IOError:
-            print "Failure: could not write file "+filename
+            print "Error: could not write file "+filename
 
 
     def update(self, mapping, tasks):
@@ -164,7 +162,10 @@ class PEs:
             except ZeroDivisionError:
                 self.ratio_load = 1.0
             self.std_load = numpy.std(self.loads)
-            self.imbalance = self.max_load/self.mean_load - 1
+            if float(self.mean_load) != 0.0:
+                self.imbalance = self.max_load/self.mean_load - 1
+            else:
+                self.imbalance = 0.0
             self.skew_load = stats.skew(self.loads)
             self.kurt_load = stats.kurtosis(self.loads)
             self.tasks_per_pe = [0]*self.num
