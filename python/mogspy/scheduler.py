@@ -3,6 +3,7 @@ import inputs               # for simple data types
 import datetime             # for date (for files)
 import csv                  # for handling csv files
 import os                   # for creating directories
+from plotter import Plotter # for plotting results
 
 # Class to interface schedulers to simplify calls
 class Scheduler:
@@ -53,7 +54,8 @@ class Scheduler:
         try:
             os.mkdir(self.path)
         except OSError:
-            print "Error: could not create directory "+self.path
+            pass
+            #print "Error: could not create directory "+self.path
         tasks_file = self.path+"tasks.csv"
         pes_file = self.path+"pes.csv"
         mapping_file = self.path+filename
@@ -106,6 +108,20 @@ class Scheduler:
         """Reports statistics in standard output"""
         self.tasks.report(self.mapping)
         self.pes.report()
+
+    def plot_all(self):
+        plotter = Plotter(self.path,self.tasks)
+        plotter.histogram()
+        plotter.bars()
+        plotter.bars(True)
+        plotter.bars(True,True)
+        plotter.bars(False,True)
+        plotter = Plotter(self.path,self.pes)
+        plotter.histogram()
+        plotter.bars()
+        plotter.bars(True)
+        plotter.bars(True,True)
+        plotter.bars(False,True)
 
 
 

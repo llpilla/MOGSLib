@@ -1,0 +1,5 @@
+algorithm=greedy
+load_aware=True
+tasks_file=csv_example/tasks.csv
+pes_file=csv_example/pes.csv
+mapping_file=csv_example/mapping.csv

@@ -9,6 +9,8 @@ class Tasks:
     """List of tasks to provide to a scheduler"""
     def __init__(self,num,loads = None):
         """Creates a list of tasks with or without their loads"""
+        self.name = "Task"
+        self.color = '#05bb06'
         self.num = num
         if type(loads) is numpy.ndarray:
             self.loads = numpy.ndarray.tolist(loads)
@@ -107,6 +109,8 @@ class PEs:
     """Information about the PEs to provide to a scheduler"""
     def __init__(self, num):
         self.num = num
+        self.name = "PE"
+        self.color = '#0506bb'
 
     @staticmethod
     def from_csv(filename = "pes.csv"):
